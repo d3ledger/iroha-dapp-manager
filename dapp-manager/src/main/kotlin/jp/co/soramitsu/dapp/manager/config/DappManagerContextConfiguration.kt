@@ -1,6 +1,6 @@
 /*
- * Copyright D3 Ledger, Inc. All Rights Reserved.
- *  SPDX-License-Identifier: Apache-2.0
+ * Copyright Soramitsu Co., Ltd. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
  */
 
 package jp.co.soramitsu.dapp.manager.config
@@ -88,9 +88,12 @@ class DappManagerContextConfiguration {
     fun registrationPort() = dappManagerConfig.registrationPort
 
     @Bean
+    fun uploaderPort() = dappManagerConfig.uploaderPort
+
+    @Bean
     fun irohaConsumer() = IrohaConsumerImpl(
         IrohaCredential(
-            dappManagerConfig.registratorAccountId,
+            dAppManagerAccountId(),
             dappKeyPair()
         ),
         irohaApi()

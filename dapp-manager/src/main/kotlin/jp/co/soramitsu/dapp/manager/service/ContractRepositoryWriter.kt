@@ -1,6 +1,6 @@
 /*
- * Copyright D3 Ledger, Inc. All Rights Reserved.
- *  SPDX-License-Identifier: Apache-2.0
+ * Copyright Soramitsu Co., Ltd. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
  */
 
 package jp.co.soramitsu.dapp.manager.service
@@ -9,6 +9,7 @@ import iroha.protocol.Endpoint
 import jp.co.soramitsu.dapp.parser.ContractParser.Companion.parse
 import jp.co.soramitsu.iroha.java.IrohaAPI
 import jp.co.soramitsu.iroha.java.Transaction
+import jp.co.soramitsu.iroha.java.Utils
 import mu.KLogging
 import org.springframework.stereotype.Component
 import java.security.KeyPair
@@ -40,7 +41,7 @@ class ContractRepositoryWriter(
                 .setAccountDetail(
                     repositoryAccountId,
                     name,
-                    script
+                    Utils.irohaEscape(script)
                 )
                 .sign(keyPair)
                 .build()

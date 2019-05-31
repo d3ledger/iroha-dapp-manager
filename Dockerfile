@@ -1,7 +1,6 @@
 FROM openjdk:8u181-jre-alpine
 WORKDIR /opt/dapp
-COPY ./dapp-core/build/libs/dapp-manager-all.jar /opt/dapp/dapp-manager.jar
-ADD ./configs /opt/dapp/configs
+COPY ./dapp-manager/build/libs/dapp-manager-all.jar /opt/dapp/dapp-manager.jar
 
 ## THE LIFE SAVER
 ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.5.0/wait /wait

@@ -4,6 +4,7 @@
 /*/build
 /*/out
 **/*.iml
+brvs/keys/*/*.*
 
 
 # Ignore Gradle GUI config

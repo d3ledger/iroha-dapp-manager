@@ -1,6 +1,6 @@
 /*
- * Copyright D3 Ledger, Inc. All Rights Reserved.
- *  SPDX-License-Identifier: Apache-2.0
+ * Copyright Soramitsu Co., Ltd. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
  */
 
 buildscript {
@@ -20,15 +20,13 @@ apply plugin: 'kotlin-spring'
 
 dependencies {
     // dApps core
-    compile('com.github.d3ledger:iroha-dapp:b10ceb2204')
-    // Spring web
-    compile('org.springframework:spring-web:5.1.4.RELEASE')
+    compile('com.github.d3ledger:iroha-dapp:ae7f12ab3f')
 
     // unit tests
     testCompile('org.junit.jupiter:junit-jupiter-api:5.4.0')
     testRuntime('org.junit.jupiter:junit-jupiter-engine:5.4.0')
     // Test containers iroha
-    testCompile('com.github.hyperledger.iroha-java:testcontainers:5.1.1')
+    testCompile('com.github.hyperledger.iroha-java:testcontainers:5.2.0')
     // Spring
     testCompile('org.springframework:spring-test:5.1.4.RELEASE')
     // Workaround for test

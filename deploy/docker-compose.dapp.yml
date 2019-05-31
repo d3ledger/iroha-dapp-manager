@@ -1,0 +1,62 @@
+version: '3.5'
+
+services:
+
+  dapp-manager:
+    image: nexus.iroha.tech:19002/dapp-deploy/dapp-manager:latest
+    container_name: dapp-manager
+    ports:
+    - 8092:8092
+    - 8090:8090
+    depends_on:
+    - d3-iroha
+    - d3-rmq
+    environment:
+      WAIT_HOSTS: d3-rmq:5672, d3-iroha:50051
+      WAIT_BEFORE_HOSTS: 10
+      WAIT_HOSTS_TIMEOUT: 60
+      DAPP-MANAGER_PUBKEY: 4c7c040308e853a91b05038cf51f23e8a1bbb42691d2822df992bbdc56fa563e
+      DAPP-MANAGER_PRIVKEY: ba861f84ff7cb8ca36ce1ad52217e39a9609369694577d03776dd0dd6ebd9ef4
+    networks:
+    - d3-network
+
+  dapp-instance:
+    image: nexus.iroha.tech:19002/dapp-deploy/dapp:latest
+    container_name: dapp-instance
+    depends_on:
+    - d3-iroha
+    - d3-rmq
+    environment:
+      WAIT_HOSTS: d3-rmq:5672, d3-iroha:50051
+      WAIT_BEFORE_HOSTS: 10
+      WAIT_HOSTS_TIMEOUT: 60
+      DAPP-MANAGER_PUBKEY: 8338ab91ce2cc2a739c40c29ae782439f2b43ddc96c756ac5d4e50ee4307e269
+      DAPP-MANAGER_PRIVKEY: f13996cf7c16df547e839aab3c417954698486cef7625b69a032b59b157b81c8
+    networks:
+    - d3-network
+
+  dapp-brvs:
+    image: nexus.iroha.tech:19002/brvs-deploy/brvs:latest
+    container_name: d3-dapp-brvs
+    ports:
+    - 8091:8091
+    depends_on:
+    - d3-brvs-mongodb
+    - d3-rmq
+    environment:
+      WAIT_HOSTS: d3-brvs-mongodb:27017, d3-rmq:5672, d3-iroha:50051
+      WAIT_BEFORE_HOSTS: 10
+      WAIT_HOSTS_TIMEOUT: 60
+      CREDENTIAL_ACCOUNTID: dapp_brvs@dapp
+      CREDENTIAL_PUBKEY: 0e73d5e941060c3a3af9c6b69fe8a766471a91076ff9fe15029f7c8d350ca461
+      CREDENTIAL_PRIVKEY: 72ac49d8a03510f5de140a6278dbb0160e2b6c2f9bdce9b17f2650be3dbcc24f
+      BRVS_USERDOMAINS: dapp
+      BRVS_PORT: 8091
+      ACCOUNTS_HOLDER: dapp_accounts@dapp
+    volumes:
+    - ../brvs/keys/dapp:/opt/brvs/config/keys/
+    networks:
+    - d3-network
+
+networks:
+  d3-network:

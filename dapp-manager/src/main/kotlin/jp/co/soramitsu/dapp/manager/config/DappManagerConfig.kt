@@ -1,6 +1,6 @@
 /*
- * Copyright D3 Ledger, Inc. All Rights Reserved.
- *  SPDX-License-Identifier: Apache-2.0
+ * Copyright Soramitsu Co., Ltd. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
  */
 
 package jp.co.soramitsu.dapp.manager.config
@@ -12,8 +12,6 @@ const val DAPP_DOMAIN = "dapp"
 interface DappManagerConfig {
 
     val accountId: String
-
-    val registratorAccountId: String
 
     val repository: String
 
@@ -28,6 +26,8 @@ interface DappManagerConfig {
     val privKey: String
 
     val registrationPort: Int
+
+    val uploaderPort: Int
 
     val irohaUrl: String
 

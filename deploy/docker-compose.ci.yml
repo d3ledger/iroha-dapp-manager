@@ -1,0 +1,57 @@
+version: '3.5'
+
+networks:
+  d3-notary:
+    name: d3-${SUBNET}
+    attachable: true
+
+services:
+  d3-iroha:
+    container_name: d3-iroha-${SUBNET}
+    expose:
+    - 50051
+    networks:
+    - d3-notary
+
+  d3-iroha-postgres:
+    container_name: d3-iroha-postgres-${SUBNET}
+    networks:
+    - d3-notary
+
+  dapp-manager:
+    container_name: dapp-manager-${SUBNET}
+    networks:
+    - d3-notary
+
+  dapp-instance:
+    container_name: dapp-instance-${SUBNET}
+    networks:
+    - d3-notary
+
+  dapp-brvs:
+    container_name: d3-dapp-brvs-${SUBNET}
+    networks:
+    - d3-notary
+
+  d3-rmq:
+    container_name: d3-rmq-${SUBNET}
+    expose:
+    - 15672
+    - 5672
+    networks:
+    - d3-notary
+
+  d3-chain-adapter:
+    container_name: d3-chain-adapter-${SUBNET}
+    networks:
+    - d3-notary
+
+  d3-brvs-mongodb:
+    container_name: d3-brvs-mongodb-${SUBNET}
+    networks:
+    - d3-notary
+
+  d3-brvs:
+    container_name: d3-brvs-${SUBNET}
+    networks:
+    - d3-notary
