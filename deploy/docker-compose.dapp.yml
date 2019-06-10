@@ -3,8 +3,9 @@ version: '3.5'
 services:
 
   dapp-manager:
-    image: nexus.iroha.tech:19002/dapp-deploy/dapp-manager:latest
+    image: nexus.iroha.tech:19002/dapp-deploy/dapp-manager:master
     container_name: dapp-manager
+    restart: on-failure
     ports:
     - 8092:8092
     - 8090:8090
@@ -12,9 +13,6 @@ services:
     - d3-iroha
     - d3-rmq
     environment:
-      WAIT_HOSTS: d3-rmq:5672, d3-iroha:50051
-      WAIT_BEFORE_HOSTS: 10
-      WAIT_HOSTS_TIMEOUT: 60
       DAPP-MANAGER_PUBKEY: 4c7c040308e853a91b05038cf51f23e8a1bbb42691d2822df992bbdc56fa563e
       DAPP-MANAGER_PRIVKEY: ba861f84ff7cb8ca36ce1ad52217e39a9609369694577d03776dd0dd6ebd9ef4
     networks:
