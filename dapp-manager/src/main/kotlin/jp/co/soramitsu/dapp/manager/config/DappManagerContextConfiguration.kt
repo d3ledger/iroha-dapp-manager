@@ -7,6 +7,7 @@ package jp.co.soramitsu.dapp.manager.config
 
 import com.d3.commons.config.RMQConfig
 import com.d3.commons.config.loadRawLocalConfigs
+import com.d3.commons.healthcheck.HealthCheckEndpoint
 import com.d3.commons.model.IrohaCredential
 import com.d3.commons.sidechain.iroha.ReliableIrohaChainListener
 import com.d3.commons.sidechain.iroha.consumer.IrohaConsumerImpl
@@ -101,4 +102,7 @@ class DappManagerContextConfiguration {
 
     @Bean
     fun jsonParser() = JsonParser()
+
+    @Bean
+    fun healthCheckEndpoint() = HealthCheckEndpoint(dappManagerConfig.healthCheckPort)
 }

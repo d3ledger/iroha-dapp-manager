@@ -47,7 +47,7 @@ soramitsu {
 
 dependencies {
     // dApps core
-    compile('com.github.d3ledger:iroha-dapp:ae7f12ab3f')
+    compile('com.github.d3ledger:iroha-dapp:33a8fa4278')
 
     // unit tests
     testCompile('org.junit.jupiter:junit-jupiter-api:5.4.0')

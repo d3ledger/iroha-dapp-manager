@@ -32,4 +32,6 @@ interface DappManagerConfig {
     val irohaUrl: String
 
     val queue: String
+
+    val healthCheckPort: Int
 }
